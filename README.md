@@ -1,9 +1,14 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Yeagerson Services</title>
+  <meta name="description" content="Design. Fitness. Digital Strategy. Full-service execution by Yeagerson Services.">
+  <meta property="og:title" content="Yeagerson Services">
+  <meta property="og:description" content="Design. Fitness. Digital Strategy. Execute faster with Yeagerson.">
+  <meta property="og:image" content="https://yourdomain.com/og-image.jpg">
+  <meta property="og:type" content="website">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; }
@@ -28,12 +33,6 @@
       position: relative;
       z-index: 1;
     }
-    .subtext {
-      font-size: 20px;
-      opacity: 0.95;
-      z-index: 1;
-      position: relative;
-    }
     .shine {
       content: '';
       position: absolute;
@@ -41,7 +40,7 @@
       left: -75%;
       width: 50%;
       height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.1), transparent);
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
       transform: skewX(-25deg);
       animation: shine 4s infinite;
       z-index: 0;
@@ -49,6 +48,12 @@
     @keyframes shine {
       0% { left: -75%; }
       100% { left: 125%; }
+    }
+    .subtext {
+      font-size: 20px;
+      opacity: 0.95;
+      z-index: 1;
+      position: relative;
     }
     .button, .action-btn {
       display: inline-block;
@@ -60,31 +65,12 @@
       border-radius: 10px;
       font-weight: 600;
       text-decoration: none;
-      transition: all 0.3s ease;
       cursor: pointer;
       box-shadow: 0 0 10px rgba(0,172,193,0.4);
+      transition: all 0.3s ease;
     }
     .button:hover, .action-btn:hover {
       transform: scale(1.07);
-    }
-    .loader {
-      display: none;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-    .loader span {
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      border: 4px solid #00acc1;
-      border-top: 4px solid transparent;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
     }
     .hidden-section {
       display: none;
@@ -94,37 +80,27 @@
       max-width: 900px;
       border-radius: 12px;
       line-height: 1.7;
+      animation: fadeIn 0.8s ease-in-out;
     }
-    h2, h3 {
-      color: #00acc1;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
+    h2, h3 { color: #00acc1; }
     ul { padding-left: 20px; }
-
-    .popup {
-      display: none;
+    #scrollTop {
       position: fixed;
-      top: 30%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #1a1a2e;
+      bottom: 30px;
+      right: 20px;
+      background: #00acc1;
       color: white;
-      padding: 20px;
-      border-radius: 10px;
-      z-index: 1000;
-      box-shadow: 0 0 15px rgba(0,188,212,0.4);
-      text-align: center;
+      padding: 10px 14px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      display: none;
     }
-    .popup.active {
-      display: block;
-    }
-    .popup img {
-      margin-top: 15px;
-      width: 160px;
-    }
-    .footer-buttons {
-      text-align: center;
-      margin: 50px 0;
-    }
+    .footer-buttons { text-align: center; margin: 50px 0; }
   </style>
 </head>
 <body>
@@ -134,102 +110,76 @@
     <div class="shine"></div>
     <p class="subtext">Design. Fitness. Digital Strategy — Professional. Tactical. Real.</p>
     <div>
-      <button class="action-btn" onclick="revealSection('rateLoader', 'rateSection')">💸 View Rate List</button>
-      <button class="action-btn" onclick="revealSection('formLoader', 'formSection')">📄 Apply</button>
-      <button class="action-btn" onclick="revealSection('aboutLoader', 'aboutSection')">📌 About Us</button>
+      <button class="action-btn" onclick="toggleSection('rateSection')">💸 View Rate List</button>
+      <button class="action-btn" onclick="toggleSection('formSection')">📄 Apply</button>
+      <button class="action-btn" onclick="toggleSection('aboutSection')">📌 About Us</button>
     </div>
   </header>
 
-  <!-- Loaders -->
-  <div id="rateLoader" class="loader"><span></span></div>
-  <div id="formLoader" class="loader"><span></span></div>
-  <div id="aboutLoader" class="loader"><span></span></div>
-
-  <!-- Sections -->
+  <!-- 💸 Rate List Section -->
   <div id="rateSection" class="hidden-section">
     <h2>Service Rate List</h2>
+
     <h3>🎨 DESIGN SERVICES</h3>
     <ul>
-      <li>Logo Design (Basic) – ₹799 <button class="button" onclick="buy('akashcharak726-2@okicici')">Buy</button></li>
-      <li>Logo Design (Pro) – ₹1499 <button class="button" onclick="buy('akashcharak726-2@okicici')">Buy</button></li>
-      <li>Landing Page Design – ₹2499 <button class="button" onclick="buy('akashcharak726-2@okicici')">Buy</button></li>
-      <li>Full Website UI/UX – ₹4999 <button class="button" onclick="buy('akashcharak726-2@okicici')">Buy</button></li>
+      <li>Logo Design (Basic) – ₹799</li>
+      <li>Logo Design (Pro) – ₹1499</li>
+      <li>Landing Page Design – ₹2499</li>
+      <li>Full Website UI/UX – ₹4999</li>
     </ul>
 
     <h3>📚 COURSES / PDF PACKS</h3>
     <ul>
-      <li>Bulking Plan – ₹499 <button class="button" onclick="buy('akashcharak726-2@okicici')">Buy</button></li>
-      <li>Cutting Plan – ₹499 <button class="button" onclick="buy('akashcharak726-2@okicici')">Buy</button></li>
-      <li>Full Combo – ₹899 <button class="button" onclick="buy('akashcharak726-2@okicici')">Buy</button></li>
-      <li>Freelance Like a Beast – ₹499 <button class="button" onclick="buy('akashcharak726-2@okicici')">Buy</button></li>
+      <li>Bulking Plan – ₹499</li>
+      <li>Cutting Plan – ₹499</li>
+      <li>Full Combo (Bulk + Cut) – ₹899</li>
+      <li>Freelance Like a Beast – ₹499</li>
     </ul>
 
     <h3>🧠 CONSULTING & CUSTOMS</h3>
     <ul>
-      <li>Brand Strategy Call – ₹699 <button class="button" onclick="buy('akashcharak726-2@okicici')">Buy</button></li>
-      <li>Custom Bundle – Starts ₹999 <button class="button" onclick="buy('akashcharak726-2@okicici')">Buy</button></li>
+      <li>Brand Strategy Call (30 min) – ₹699</li>
+      <li>Custom Bundle – Starts ₹999</li>
     </ul>
-    <p><strong>Note:</strong> Payments via UPI / GPay / Paytm / Razorpay / PhonePe</p>
+
+    <p><strong>Note:</strong> Payments via UPI / GPay / Paytm / Razorpay / PhonePe. Contact us to proceed.</p>
   </div>
 
+  <!-- 📄 Job Application Form -->
   <div id="formSection" class="hidden-section">
     <h2>Apply for a Role</h2>
     <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeGxgOCqAzI-d8mpKss4QXefyI48pKEvjm5rFyBHxBMoZhDMw/viewform?embedded=true" width="100%" height="800" frameborder="0">Loading…</iframe>
   </div>
 
+  <!-- 📌 About Us -->
   <div id="aboutSection" class="hidden-section">
     <h2>About Yeagerson Services</h2>
-    <p>We don’t just offer design or strategy — we deliver full-scale execution. From branding to dashboards, strategy, and digital ops — all custom, all fast.</p>
-    <p><strong>Founded by John Yeagerson</strong>, a multi-skilled creator and builder. Not your average “agency” — this is a digital powerhouse built from hustle.</p>
-    <blockquote><strong>"Others outsource. We execute."<br>"Others give you designs. We give you systems that sell."</strong></blockquote>
-    <h3>💼 What We Stand For</h3>
-    <ul>
-      <li>Execution over Excuses</li>
-      <li>Clarity over Chaos</li>
-      <li>Design that Converts</li>
-      <li>Service with Soul</li>
-    </ul>
-    <h3>🧠 What We Do Best</h3>
-    <ul>
-      <li>Branding, UI/UX, HTML/CSS Sites</li>
-      <li>Presentation Decks, Dashboards, Funnels</li>
-      <li>Business Strategy, Monthly Retainers</li>
-    </ul>
+    <p>We don’t just offer services. We build complete, outcome-focused solutions. Founded by John Yeagerson, this is where execution meets bold clarity. From design to digital to fitness – we’ve got your back.</p>
     <p><strong>📍 Based in India – Serving Clients Worldwide 🌍</strong></p>
   </div>
 
-  <!-- Buy Popup -->
-  <div id="popup" class="popup">
-    <p>Scan to Pay (UPI)</p>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/7/70/QRCode-2.png" alt="UPI QR">
-    <p>Redirecting after payment...</p>
-  </div>
-
+  <!-- 🔗 Contact Buttons -->
   <div class="footer-buttons">
-    <button class="action-btn" onclick="window.location.href='mailto:adityacharak14@gmail.com'">📧 Email</button>
+    <button class="action-btn" onclick="window.open('mailto:adityacharak14@gmail.com')">📧 Email</button>
     <button class="action-btn" onclick="window.open('https://www.instagram.com/son__yeager_', '_blank')">📸 Instagram</button>
   </div>
 
+  <!-- 🔝 Scroll-to-top -->
+  <div id="scrollTop" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">↑</div>
+
+  <!-- 🚀 Scripts -->
   <script>
-    function revealSection(loaderId, sectionId) {
-      const loader = document.getElementById(loaderId);
-      const section = document.getElementById(sectionId);
-      loader.style.display = "flex";
-      setTimeout(() => {
-        loader.style.display = "none";
-        section.style.display = "block";
-        section.scrollIntoView({ behavior: "smooth" });
-      }, 2000);
+    function toggleSection(id) {
+      const section = document.getElementById(id);
+      section.style.display = (section.style.display === "block") ? "none" : "block";
+      section.scrollIntoView({ behavior: "smooth" });
     }
 
-    function buy(upiId) {
-      const popup = document.getElementById('popup');
-      popup.classList.add('active');
-      setTimeout(() => {
-        popup.classList.remove('active');
-        window.location.href = "https://drive.google.com";
-      }, 4000);
-    }
+    window.onscroll = () => {
+      document.getElementById("scrollTop").style.display = window.scrollY > 300 ? "block" : "none";
+    };
   </script>
 </body>
 </html>
+
+
